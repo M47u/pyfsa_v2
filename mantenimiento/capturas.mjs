@@ -28,11 +28,25 @@ for (const width of [390, 1440]) {
     await Promise.all(imgs.map(img => img.complete ? null : new Promise(r => { img.onload = img.onerror = r; })));
   });
   // Fuerza la carga de todas las fuentes (Bootstrap Icons se pide recién cuando se usa un glifo).
-  await page.evaluate(async () => {
-    await document.fonts.load('16px "bootstrap-icons"', '');
-    await Promise.all([...document.fonts].map(f => f.load().catch(() => null)));
-    await document.fonts.ready;
-  });
+  // A veces la fuente no llega a cargar: se reintenta recargando la página.
+  for (let intento = 1; ; intento++) {
+    const ok = await page.evaluate(async () => {
+      await document.fonts.load('16px "bootstrap-icons"', '');
+      await Promise.all([...document.fonts].map(f => f.load().catch(() => null)));
+      await document.fonts.ready;
+      return document.fonts.check('16px "bootstrap-icons"', '');
+    });
+    if (ok) break;
+    if (intento === 3) { errores.push('Bootstrap Icons no cargó tras 3 intentos'); break; }
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.addStyleTag({ content: '*,*::before,*::after{animation:none!important;transition:none!important}' });
+    await page.evaluate(() => document.querySelectorAll('[data-aos]').forEach(el => el.classList.add('aos-animate')));
+    await page.evaluate(async () => {
+      const imgs = [...document.images];
+      imgs.forEach(img => img.loading = 'eager');
+      await Promise.all(imgs.map(img => img.complete ? null : new Promise(r => { img.onload = img.onerror = r; })));
+    });
+  }
   await page.waitForTimeout(1500);
   const archivo = path.join(dir, `${etiqueta}-${width}.png`);
   await page.screenshot({ path: archivo, fullPage: true });
