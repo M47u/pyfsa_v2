@@ -80,7 +80,7 @@ Criterio de aceptación: el script no reporta errores mecánicos y las capturas 
 - Abrir cada imagen de `assets/img/clients/` con la herramienta de lectura.
 - Si el nombre de la empresa es legible en el logo, actualizar el `alt` (por ejemplo "Logo de X, cliente de PyFsa Software"). Si no se lee con seguridad, dejar el `alt` actual y anotar el archivo en `PENDIENTES.md`.
 
-## T07 - Higiene del repositorio (APLICAR) - estado: pendiente
+## T07 - Higiene del repositorio (APLICAR) - estado: hecha (fb3b423 .gitignore, 69011ed eliminaciones); registros en PENDIENTES P11-P14
 
 Commit 1, `.gitignore`: `node_modules/`, `*.log`, `.DS_Store`, `Thumbs.db`, `mantenimiento/capturas/`, `screenshots/`.
 

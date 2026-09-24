@@ -198,3 +198,43 @@ El logo muestra un enchufe y el texto "ELECTRO D?". La última letra no se disti
 **Dato necesario:** el nombre exacto de la empresa. **Cambio listo:** en `index.html`, reemplazar `alt="Cliente 1 de PyFsa Software"` por `alt="Logo de <NOMBRE>, cliente de PyFsa Software"`.
 
 Nota aparte: los seis logos miden 101x101 px y se ven borrosos en pantallas de alta densidad. Si el dueño tiene los originales, conviene exportarlos a unos 300x300 px.
+
+---
+
+## P11 - Carpeta `preview/` (T07)
+
+`preview/` (105 archivos, unos 15 MB) es una copia **anterior** del sitio, no idéntica:
+
+- `index.html`: usa `col-lg-4 col-md-6` en lugar de `col-sm-6 col-lg-4` (9 tarjetas) y dice `&copy; 2025`.
+- `assets/css/style.css`: le falta todo el bloque "RESPONSIVE" del final (unas 155 líneas).
+- `assets/img/team/`: tiene además versiones JPG de las fotos del equipo (`Pyfsa_*.jpg`, `Pyfsa_*__.jpeg`), que no están en la raíz.
+- `forms/contact.php` y `sitemap.xml`: iguales a los de `main` (sin los cambios de esta rama).
+
+**Qué hay que decidir:** si `preview/` todavía cumple alguna función (por ejemplo, un entorno de prueba en el hosting). Si no:
+
+```bash
+git rm -r preview
+git commit -m "chore(repo): elimina la copia preview/ del sitio"
+```
+
+Si se conserva, recordar que no debe subirse al hosting (el README lo indica). No se tocó (solo se eliminó `preview/.atl/`, autorizado en T07).
+
+## P12 - `inner-page.html` (T07)
+
+Es el remanente de la plantilla de BootstrapMade. **Ningún archivo del sitio lo enlaza.** Solo aparece mencionado en `changelog.txt` (el changelog de la plantilla) y en su copia de `preview/`. `checks.py` le encuentra 9 anclas sin destino (`#hero`, `#about`, `#pricing`, `#gallery`, etc., del menú original). Si está publicado en el hosting, es accesible en `/inner-page.html` y se ve como una página rota de la plantilla.
+
+**Propuesta:** eliminarlo (`git rm inner-page.html`) y, si ya está en el servidor, borrarlo también allá. `changelog.txt` es el changelog de la plantilla y tampoco aporta al sitio: se puede eliminar en el mismo commit, o conservar como referencia de la versión de la plantilla.
+
+## P13 - Herramientas de desarrollo: `screenshot.mjs`, `package.json`, `package-lock.json` (T07)
+
+- `screenshot.mjs` tiene rutas fijas de XAMPP (`http://localhost/pyfsasoftware_orig/` y `C:/xampp/htdocs/pyfsasoftware_orig/screenshots`), que corresponden a otra carpeta (`pyfsasoftware_orig`, no `pyfsa_v22`). Así como está no funciona en este repo. Para capturas se puede usar `mantenimiento/capturas.mjs`, que sirve el sitio con `php -S` y no depende de XAMPP.
+- `package.json` solo declara `playwright` (el nombre `pyfsasoftware_orig` también es heredado). Son herramientas de desarrollo: **no se suben al hosting**, igual que `node_modules/`.
+- Nota: Playwright 1.60 espera un navegador (`chromium_headless_shell-1223`) que no está descargado en esta PC. Los scripts de `mantenimiento/` usan el Chromium ya instalado (`chromium-1243`). Para usar `screenshot.mjs` habría que correr `npx playwright install chromium`.
+
+**Propuesta:** eliminar `screenshot.mjs` (reemplazado por `mantenimiento/capturas.mjs`) o corregir sus rutas; decisión del dueño.
+
+## P14 - Otros hallazgos de orden del repositorio (T07)
+
+- **`default.php` en el servidor:** se eliminó del repo, pero si sigue en el hosting hay que borrarlo allá también. Según la configuración del servidor, puede mostrarse en lugar del sitio o quedar accesible en `/default.php`.
+- **Archivos sin seguimiento en la raíz:** `.claude/`, `PROMPT_NOCHE.md` y `files.zip` (este último contiene copias del backlog, del prompt y de la definición del agente). No se agregaron al `.gitignore` porque no estaban en la lista de T07. Propuesta: sumarlos al `.gitignore`, o versionar `.claude/agents/` si se quiere compartir el agente, y en cualquier caso no subirlos al hosting.
+- **Fin de línea:** el repo tiene `core.autocrlf=true`. Con esa configuración, `mantenimiento/pruebas-formulario.sh` puede quedar con CRLF en otro clon y fallar en bash. Propuesta: agregar un `.gitattributes` con `*.sh text eol=lf`.

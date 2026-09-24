@@ -74,3 +74,12 @@ Rama: `mantenimiento/noche-2026-09-24` (creada desde `main` en `2286e4f`).
 - `renco_final.png` e `innova_final.png` ya tenían el nombre en el `alt`: sin cambios (cambio mínimo).
 - Verificación: `checks.py` 0 errores; capturas vs. `main`: 0 píxeles distintos.
 - Revertir: `git revert 60afe18`.
+
+## T07 - Higiene del repositorio (commits `fb3b423` y `69011ed`)
+
+- Commit 1 (`fb3b423`): `.gitignore` con exactamente `node_modules/`, `*.log`, `.DS_Store`, `Thumbs.db`, `mantenimiento/capturas/` y `screenshots/`. Ningún archivo versionado coincidía con esos patrones.
+- Commit 2 (`69011ed`), con `git rm`: `default.php` y `default.php.old.php` (idénticos, título "Página por defecto", de Hostinger; ningún archivo los referencia) y `preview/.atl/` (registro de una herramienta con rutas del perfil de usuario de la PC). Se revisó el contenido antes de borrar.
+- Solo registrar → PENDIENTES: P11 (`preview/`, que es una versión anterior y no una copia idéntica), P12 (`inner-page.html`, sin enlaces entrantes), P13 (`screenshot.mjs` y `package.json`), P14 (`default.php` en el servidor, archivos sin seguimiento, fin de línea).
+- Verificación: `checks.py` 0 errores; `index.html` responde 200; `git status` limpio salvo los archivos del kit.
+- Revertir: `git revert 69011ed` (restaura los archivos) y/o `git revert fb3b423`.
+- Incidente del proceso: antes de que existiera el `.gitignore`, un `git add mantenimiento/` incluyó capturas y correos de prueba en un commit de documentación. Se deshizo en el momento con `git reset --soft HEAD~1` (sin tocar el árbol de trabajo) y se rehízo como `21baa92` sin esos archivos. Nunca quedaron en el historial de la rama.
