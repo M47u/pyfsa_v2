@@ -33,13 +33,13 @@ Criterio de aceptación:
 - Pruebas locales con `php -S` y `curl` para todos los casos listados en la sección Verificaciones del agente. La inyección de cabeceras debe ser rechazada.
 - Captura visual del formulario sin cambios de diseño (el honeypot no debe verse).
 
-## T02 - Número de WhatsApp (SOLO REGISTRAR) - estado: pendiente
+## T02 - Número de WhatsApp (SOLO REGISTRAR) - estado: decisión humana (registrada en PENDIENTES.md)
 
 - Listar con `grep -n` todas las ocurrencias de `543704216650` y `421 6650` en `index.html` (enlaces `wa.me`, texto visible, footer, JSON-LD `telephone`).
 - En `PENDIENTES.md`, dejar el reemplazo propuesto listo para aplicar cuando el dueño confirme: enlace `+5493704216650` (celular con 9), y formato visible `+54 9 3704 21-6650`. Aclarar que el código de área de Formosa es 3704 y que el número actual se muestra partido en 370 / 421 / 6650.
 - No modificar ningún archivo del sitio.
 
-## T03 - Inconsistencias de contenido (SOLO REGISTRAR) - estado: pendiente
+## T03 - Inconsistencias de contenido (SOLO REGISTRAR) - estado: decisión humana (registrada en PENDIENTES.md)
 
 Registrar en `PENDIENTES.md`, sin cambiar nada:
 - El hero dice "5 Programadores" y la sección Equipo muestra 3 personas.
@@ -48,12 +48,12 @@ Registrar en `PENDIENTES.md`, sin cambiar nada:
 - Los tres testimonios están atribuidos por nombre a Renco, Innova y San Simón SRL: confirmar autorización de cada cliente para publicarlos.
 - Diferencia de copyright entre `index.html` (2021) y `preview/index.html` (2025): confirmar el año deseado.
 
-## T04 - Enlaces de redes sociales vacíos (SOLO REGISTRAR) - estado: pendiente
+## T04 - Enlaces de redes sociales vacíos (SOLO REGISTRAR) - estado: decisión humana (registrada en PENDIENTES.md)
 
 - Listar con `grep -n` todos los `href="#"` en las tarjetas del equipo y en el bloque de redes de contacto.
 - En `PENDIENTES.md`, pedir las URLs reales (Instagram, Facebook, LinkedIn de la empresa y de cada integrante) y describir las dos alternativas: completar los enlaces o quitar los íconos que no se usen. No inventar URLs.
 
-## T11 - Accesibilidad (SOLO REGISTRAR) - estado: pendiente
+## T11 - Accesibilidad (SOLO REGISTRAR) - estado: decisión humana (registrada en PENDIENTES.md)
 
 - Revisar `index.html` y `assets/js/main.js`: el botón del menú móvil es un `<i class="bi bi-list mobile-nav-toggle">`, que no es operable con teclado ni anuncia su estado.
 - En `PENDIENTES.md`, proponer el cambio (botón real con `aria-label` y `aria-expanded`) indicando qué habría que ajustar en HTML, CSS y JS. No aplicar.

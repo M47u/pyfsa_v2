@@ -35,3 +35,13 @@ Rama: `mantenimiento/noche-2026-09-24` (creada desde `main` en `2286e4f`).
   - Visual: `main` vs T01 con 0 píxeles distintos a 390 y 1440 px.
 - No verificado: el envío real desde el hosting. El entorno local no manda correo; se verificó que la ruta de éxito llame a `mail()` con cabeceras correctas.
 - Revertir: `git revert 3db8603`.
+
+## T02, T03, T04, T11 - Solo registrar
+
+- Qué: se documentaron en `PENDIENTES.md` los puntos P01 a P08. No se modificó ningún archivo del sitio (`git diff main -- index.html assets/` solo muestra el honeypot de T01).
+- T02 → P01: 6 enlaces `wa.me`, el `telephone` del JSON-LD y 2 textos visibles. El comando de reemplazo propuesto se probó sobre una copia de `index.html` en una carpeta temporal.
+- T03 → P02 (5 programadores vs. 3 en Equipo; +11 clientes vs. 6 logos), P03 (compromisos de la FAQ; se agregaron las otras menciones de "gratuito/gratis" del hero y del CTA), P04 (testimonios con nombre), P05 (copyright 2021 vs. 2025 en `preview/`).
+- T04 → P06: 9 enlaces `href="#"` de redes (6 del equipo y 3 de la empresa). El `href="#"` del botón "volver arriba" es correcto y no se incluye.
+- T11 → P07 (toggle del menú móvil: cambio HTML/JS/CSS completo propuesto) y P08 (contraste). Los contrastes se calcularon con la fórmula WCAG: `--text-faint` da de 1.6 a 1.8:1 (copyright, etiquetas de contacto, placeholders) y el botón de WhatsApp con texto blanco da 1.98:1. Se corrigieron dos cifras de la propuesta tras recalcularlas.
+- Verificación: revisión de `git diff`, sin cambios fuera de `mantenimiento/`.
+- Revertir: `git revert` del commit de documentación correspondiente.
