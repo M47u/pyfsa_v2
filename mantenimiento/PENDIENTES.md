@@ -167,3 +167,24 @@ Relaciones de contraste calculadas con la fórmula WCAG 2.x. El mínimo AA es 4.
 
 - Subir `--text-faint` a un gris que llegue a 4.5:1 sobre `#161616`, por ejemplo `#7f7f7f` (4.52:1 sobre `#161616`; `#7a7a7a` no alcanza: 4.22:1). Otra opción: usar `--text-muted` (`#888`) en `.footer-bottom`, `.contact-detail strong` y los placeholders, y dejar `--text-faint` solo para elementos decorativos como `.service-number`.
 - Botón de WhatsApp: texto oscuro (`color: #080808`, 10.1:1) o un verde más oscuro de fondo (por ejemplo `#128C7E` con texto blanco: 4.14:1, cumple solo para texto grande). Es un cambio de identidad visual y lo decide el dueño.
+
+---
+
+## P09 - Imagen para compartir en redes (og:image) (T05)
+
+**Situación:** `og:image` apunta a `https://pyfsasoftware.com.ar/assets/img/iconPyfsa_final.png`, el ícono del sitio (682x675 px, casi cuadrado). Al compartir el enlace en WhatsApp, Facebook o LinkedIn, la vista previa se ve chica o recortada. `twitter:card` es `summary` (miniatura chica) y no define `twitter:image`.
+
+**Dato necesario:** una imagen de **1200x630 px** (JPG o PNG, idealmente de menos de 300 KB) con la identidad de PyFsa. No se generó ninguna para no inventar diseño.
+
+**Cambio listo para cuando exista** (suponiendo que se guarde como `assets/img/og-pyfsa.jpg`):
+
+```html
+<meta property="og:image" content="https://pyfsasoftware.com.ar/assets/img/og-pyfsa.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PyFsa Software - Sistemas web y apps a medida">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pyfsasoftware.com.ar/assets/img/og-pyfsa.jpg">
+```
+
+(reemplaza la línea `og:image` actual y la de `twitter:card`).

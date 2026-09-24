@@ -67,7 +67,7 @@ Registrar en `PENDIENTES.md`, sin cambiar nada:
 
 Criterio de aceptación: el script no reporta errores mecánicos y las capturas antes y después son equivalentes.
 
-## T05 - SEO técnico menor (APLICAR) - estado: pendiente
+## T05 - SEO técnico menor (APLICAR) - estado: hecha (32c8218); og:image en PENDIENTES (P09)
 
 - Agregar `<link rel="canonical" href="https://pyfsasoftware.com.ar/">`, `og:locale` con `es_AR` y `og:site_name` con `PyFsa Software`.
 - Actualizar `lastmod` de `sitemap.xml` a la fecha del día (`date +%F`).

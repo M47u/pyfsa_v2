@@ -53,3 +53,12 @@ Rama: `mantenimiento/noche-2026-09-24` (creada desde `main` en `2286e4f`).
 - Resultado sobre `index.html`: **0 errores**. Confirmado a mano con grep: 6/6 `target="_blank"` con `noopener`, 10/10 `<img>` con `alt`, 22 rutas locales existentes, sin ids duplicados ni anclas huérfanas. No hubo nada mecánico que corregir, así que `index.html` no se modificó y el criterio visual se cumple trivialmente.
 - Hallazgo registrado: `inner-page.html` tiene 9 anclas sin destino (menú de la plantilla original). No se toca: va a PENDIENTES junto con T07.
 - Revertir: `git revert 6bfa90a` (solo agrega el script).
+
+## T05 - SEO técnico menor (commit `32c8218`)
+
+- Qué: `<link rel="canonical" href="https://pyfsasoftware.com.ar/">`, `og:locale` = `es_AR`, `og:site_name` = `PyFsa Software`. `lastmod` del sitemap pasó de 2025-06-05 a 2026-09-24. El comentario de GA quedó como `<!-- Google Analytics GA4 -->`, igual que los demás comentarios de sección.
+- El ID `G-8D8Z64KF7W` no cambió (2 ocurrencias antes y después).
+- `robots.txt` ya apuntaba a `https://pyfsasoftware.com.ar/sitemap.xml`: sin cambios.
+- `og:image`: solo registrar → P09 en PENDIENTES (el ícono actual mide 682x675; hace falta una imagen de 1200x630).
+- Verificación: `checks.py` 0 errores; `sitemap.xml` parsea como XML válido; capturas vs. `main`: 0 píxeles distintos a 390 y 1440 px.
+- Revertir: `git revert 32c8218`.
