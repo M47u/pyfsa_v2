@@ -83,3 +83,10 @@ Rama: `mantenimiento/noche-2026-09-24` (creada desde `main` en `2286e4f`).
 - Verificación: `checks.py` 0 errores; `index.html` responde 200; `git status` limpio salvo los archivos del kit.
 - Revertir: `git revert 69011ed` (restaura los archivos) y/o `git revert fb3b423`.
 - Incidente del proceso: antes de que existiera el `.gitignore`, un `git add mantenimiento/` incluyó capturas y correos de prueba en un commit de documentación. Se deshizo en el momento con `git reset --soft HEAD~1` (sin tocar el árbol de trabajo) y se rehízo como `21baa92` sin esos archivos. Nunca quedaron en el historial de la rama.
+
+## T08 - Peso de imágenes (sin cambios en el sitio)
+
+- Herramientas: no hay Pillow ni `sharp` (el backlog condiciona la tarea a que existan). No se instalaron. Se registró la propuesta como P15.
+- Mayores de 250 KB: las 3 fotos del equipo (1087 a 1180 KB, 1537x1023 px, que se muestran en 148 px) y 4 imágenes que `index.html` no usa (`product-screen-3.png` 520 KB, `EventoQR.png` 383 KB, `IMG_4564.PNG` 374 KB, `IMG_4565.PNG` 363 KB).
+- Imágenes de `assets/img/` (sin `clients/` ni `team/`) que no usan `index.html`, `style.css` ni `main.js`, en total unos 2576 KB: EventoQR.png, IMG_4563.PNG, IMG_4564.PNG, IMG_4565.PNG, advanced-feature-1/2/3.jpg, apple-touch-icon.png*, call-to-action-bg.jpg, call-to-action-bg2.jpg, call-to-action-bg2.png, favicon.png*, hero-bg.jpg, logo.png*, product-features-(1).png, product-features-.png, product-features.png, product-screen-1-.png, product-screen-1.png, product-screen-2-.png, product-screen-2.png, product-screen-3-.png, product-screen-3.png. (* = solo la usa `inner-page.html`.)
+- Revertir: no aplica (solo documentación).

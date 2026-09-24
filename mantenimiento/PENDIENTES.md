@@ -238,3 +238,42 @@ Es el remanente de la plantilla de BootstrapMade. **Ningún archivo del sitio lo
 - **`default.php` en el servidor:** se eliminó del repo, pero si sigue en el hosting hay que borrarlo allá también. Según la configuración del servidor, puede mostrarse en lugar del sitio o quedar accesible en `/default.php`.
 - **Archivos sin seguimiento en la raíz:** `.claude/`, `PROMPT_NOCHE.md` y `files.zip` (este último contiene copias del backlog, del prompt y de la definición del agente). No se agregaron al `.gitignore` porque no estaban en la lista de T07. Propuesta: sumarlos al `.gitignore`, o versionar `.claude/agents/` si se quiere compartir el agente, y en cualquier caso no subirlos al hosting.
 - **Fin de línea:** el repo tiene `core.autocrlf=true`. Con esa configuración, `mantenimiento/pruebas-formulario.sh` puede quedar con CRLF en otro clon y fallar en bash. Propuesta: agregar un `.gitattributes` con `*.sh text eol=lf`.
+
+---
+
+## P15 - Peso de imágenes (T08)
+
+**No se aplicó:** en esta PC no están instalados Pillow ni `sharp`, y no se instaló nada.
+
+Imágenes versionadas de más de 250 KB (sin contar `preview/`):
+
+| Tamaño | Archivo | ¿La usa `index.html`? |
+|---|---|---|
+| 1180 KB | `assets/img/team/Pyfsa_Mati.png` | Sí (foto del equipo) |
+| 1097 KB | `assets/img/team/Pyfsa_Dani.png` | Sí (foto del equipo) |
+| 1087 KB | `assets/img/team/Pyfsa_Marcos.png` | Sí (foto del equipo) |
+| 520 KB | `assets/img/product-screen-3.png` | No |
+| 383 KB | `assets/img/EventoQR.png` | No |
+| 374 KB | `assets/img/IMG_4564.PNG` | No |
+| 363 KB | `assets/img/IMG_4565.PNG` | No |
+
+**Fotos del equipo:** miden 1537x1023 px (PNG sin transparencia) y se muestran en un círculo de 148 px (130 y 120 px en pantallas chicas). Son unos 3.3 MB de los que se aprovecha una fracción mínima. Aunque tengan `loading="lazy"`, el visitante que llega a la sección Equipo descarga los 3.3 MB.
+
+**Propuesta A (lo que pide el backlog):** WebP de hasta 800 px de ancho, calidad 82, junto a los originales. Con Pillow en un entorno virtual local (no global):
+
+```bash
+python -m venv .venv-img && .venv-img/Scripts/python -m pip install Pillow
+.venv-img/Scripts/python -c "
+from PIL import Image
+for n in ('Dani', 'Marcos', 'Mati'):
+    im = Image.open(f'assets/img/team/Pyfsa_{n}.png').convert('RGB')
+    im.thumbnail((800, 800))
+    im.save(f'assets/img/team/Pyfsa_{n}.webp', 'WEBP', quality=82)
+"
+```
+
+Después, en `index.html`, cambiar `Pyfsa_Dani.png`, `Pyfsa_Marcos.png` y `Pyfsa_Mati.png` por `.webp` en un commit aparte, y comparar capturas con `node mantenimiento/capturas.mjs` y `node mantenimiento/comparar.mjs`. Para un círculo de 148 px, un ancho de 400 px ya alcanza en pantallas 2x y pesaría todavía menos. Agregar `.venv-img/` al `.gitignore`.
+
+**Propuesta B:** `preview/assets/img/team/` ya tiene versiones JPG más livianas (`Pyfsa_*.jpg`, de 72 a 115 KB). Habría que confirmar que son las mismas fotos y el mismo encuadre antes de usarlas.
+
+**Imágenes sin uso:** 23 archivos de `assets/img/` (unos 2.5 MB) no los usa `index.html`. Son restos de la plantilla (`product-screen-*`, `advanced-feature-*`, `call-to-action-bg*`, `hero-bg.jpg`) y capturas (`IMG_4563-4565.PNG`, `EventoQR.png`). Tres (`apple-touch-icon.png`, `favicon.png`, `logo.png`) solo las usa `inner-page.html`. Propuesta: confirmar que no se usan en otro lado (por ejemplo, enlazadas desde redes) y eliminarlas con `git rm` en un commit aparte. Listado completo en la bitácora (T08).

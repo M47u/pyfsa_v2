@@ -88,7 +88,7 @@ Commit 2, separado, con `git rm`: `default.php`, `default.php.old.php` (página 
 
 Solo registrar en `PENDIENTES.md`, sin tocar: `preview/` (copia casi idéntica del sitio), `inner-page.html` (remanente de la plantilla: indicar si algún archivo lo enlaza), `screenshot.mjs` y `package.json` (herramientas de desarrollo: recordar que `screenshot.mjs` usa rutas de XAMPP).
 
-## T08 - Peso de imágenes (APLICAR condicional) - estado: pendiente
+## T08 - Peso de imágenes (APLICAR condicional) - estado: decisión humana (sin Pillow ni sharp; propuesta en PENDIENTES P15)
 
 - Listar imágenes de más de 250 KB con su tamaño. Las fotos del equipo (`assets/img/team/Pyfsa_*.png`) pesan más de 1 MB cada una.
 - Si hay Pillow o `sharp`, generar versiones WebP de las fotos del equipo (ancho máximo 800 px, calidad cercana a 82) junto a los originales, sin borrar estos.
