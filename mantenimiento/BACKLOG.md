@@ -75,7 +75,7 @@ Criterio de aceptación: el script no reporta errores mecánicos y las capturas 
 - Verificar que `robots.txt` apunte al sitemap correcto.
 - `og:image`: SOLO REGISTRAR. Hoy usa el ícono chico; para compartir en redes hace falta una imagen de 1200x630 px que debe aportar el dueño.
 
-## T06 - Texto alternativo de logos de clientes (APLICAR condicional) - estado: pendiente
+## T06 - Texto alternativo de logos de clientes (APLICAR condicional) - estado: hecha (60afe18; 3 de 4 logos genéricos; client-1 en PENDIENTES P10)
 
 - Abrir cada imagen de `assets/img/clients/` con la herramienta de lectura.
 - Si el nombre de la empresa es legible en el logo, actualizar el `alt` (por ejemplo "Logo de X, cliente de PyFsa Software"). Si no se lee con seguridad, dejar el `alt` actual y anotar el archivo en `PENDIENTES.md`.

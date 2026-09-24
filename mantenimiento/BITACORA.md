@@ -62,3 +62,15 @@ Rama: `mantenimiento/noche-2026-09-24` (creada desde `main` en `2286e4f`).
 - `og:image`: solo registrar → P09 en PENDIENTES (el ícono actual mide 682x675; hace falta una imagen de 1200x630).
 - Verificación: `checks.py` 0 errores; `sitemap.xml` parsea como XML válido; capturas vs. `main`: 0 píxeles distintos a 390 y 1440 px.
 - Revertir: `git revert 32c8218`.
+
+## T06 - Texto alternativo de logos de clientes (commit `60afe18`)
+
+- Se abrió cada imagen de `assets/img/clients/` con la herramienta de lectura (client-1 también ampliada a 600 px en el navegador).
+- Legibles con seguridad, `alt` actualizado:
+  - `client-2.png` → "Logo de José Delguy, concejal, cliente de PyFsa Software"
+  - `client-3.png` → "Logo de San Simón S.R.L., cliente de PyFsa Software" (con tilde, como en el testimonio)
+  - `client-4.png` → "Logo de Bastian, cervecería artesanal, cliente de PyFsa Software"
+- No seguro: `client-1.png` ("ELECTRO DA" o "ELECTRO DR"). Se dejó el `alt` y se registró como P10.
+- `renco_final.png` e `innova_final.png` ya tenían el nombre en el `alt`: sin cambios (cambio mínimo).
+- Verificación: `checks.py` 0 errores; capturas vs. `main`: 0 píxeles distintos.
+- Revertir: `git revert 60afe18`.

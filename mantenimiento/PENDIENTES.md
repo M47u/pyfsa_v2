@@ -188,3 +188,13 @@ Relaciones de contraste calculadas con la fórmula WCAG 2.x. El mínimo AA es 4.
 ```
 
 (reemplaza la línea `og:image` actual y la de `twitter:card`).
+
+---
+
+## P10 - Nombre del cliente del logo `client-1.png` (T06)
+
+El logo muestra un enchufe y el texto "ELECTRO D?". La última letra no se distingue con seguridad entre **A** y **R**: la imagen mide 101x101 px y la tipografía es muy estilizada, incluso ampliada. Se dejó el `alt` actual ("Cliente 1 de PyFsa Software").
+
+**Dato necesario:** el nombre exacto de la empresa. **Cambio listo:** en `index.html`, reemplazar `alt="Cliente 1 de PyFsa Software"` por `alt="Logo de <NOMBRE>, cliente de PyFsa Software"`.
+
+Nota aparte: los seis logos miden 101x101 px y se ven borrosos en pantallas de alta densidad. Si el dueño tiene los originales, conviene exportarlos a unos 300x300 px.
