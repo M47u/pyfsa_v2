@@ -12,7 +12,7 @@ Las tareas SOLO REGISTRAR (T02, T03, T04, T11) van temprano porque son rápidas 
 
 ---
 
-## T01 - Formulario de contacto seguro y funcional (APLICAR) - estado: pendiente
+## T01 - Formulario de contacto seguro y funcional (APLICAR) - estado: hecha (3db8603)
 
 Problemas detectados:
 - `forms/contact.php` pasa el email del visitante directo a las cabeceras de `mail()`: permite inyección de cabeceras (spam desde el hosting).
