@@ -99,7 +99,7 @@ Solo registrar en `PENDIENTES.md`, sin tocar: `preview/` (copia casi idéntica d
 
 Crear `README.md` en la raíz (hoy no existe en este repo) con: qué es el proyecto; estructura de carpetas; cómo probarlo localmente (`php -S 127.0.0.1:8080`); qué archivos se suben al hosting y cuáles no; cómo usar el agente de mantenimiento y sus archivos en `mantenimiento/`. No incluir datos sensibles ni credenciales.
 
-## T12 - Cierre (APLICAR) - estado: pendiente
+## T12 - Cierre (APLICAR) - estado: hecha (commit final)
 
 - Ejecutar todas las verificaciones una última vez sobre el estado final de la rama.
 - Confirmar que `git status` está limpio y que ningún commit tocó `assets/vendor/` ni `preview/` (única excepción autorizada: la eliminación de `preview/.atl/` en T07).

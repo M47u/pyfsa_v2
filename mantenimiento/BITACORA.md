@@ -96,3 +96,10 @@ Rama: `mantenimiento/noche-2026-09-24` (creada desde `main` en `2286e4f`).
 - Qué: `README.md` en la raíz con qué es el proyecto, la estructura de carpetas, cómo probarlo localmente (`php -S 127.0.0.1:8080`), cómo responde el formulario (contrato `OK` de `validate.js`), qué se sube al hosting y qué no, y cómo usar el agente y los scripts de `mantenimiento/`. Sin datos sensibles: solo figura el correo público que ya está en el sitio.
 - En el mismo commit: guarda `PHP_SAPI !== 'cli'` en `mantenimiento/capturar-mail.php`, para que no escriba archivos si por error se sube `mantenimiento/` al hosting. Verificado: una petición web no crea archivos y `pruebas-formulario.sh` sigue dando 18/18.
 - Revertir: `git revert f6a6769`.
+
+## T12 - Cierre
+
+- Arreglo previo (`e1a012b`): en la verificación final, 1 de las capturas a 1440 px salió sin la fuente de íconos (un falso positivo de la herramienta, confirmado mirando la imagen). `capturas.mjs` ahora comprueba `document.fonts.check` y recarga hasta 3 veces.
+- Verificaciones finales sobre el estado de la rama: `php -l` ok; `checks.py` 0 errores; `pruebas-formulario.sh` 18/18; prueba en navegador 2/2; visual contra `main` con 0 píxeles distintos en 5 corridas seguidas a 390 y 1440 px; `sitemap.xml` válido.
+- Ningún commit tocó `assets/vendor/`. En `preview/` solo se eliminó `preview/.atl/` (autorizado).
+- Se escribió `mantenimiento/INFORME.md`. Se detuvieron los servidores locales (8080, 8081, 8082).
