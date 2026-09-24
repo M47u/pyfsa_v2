@@ -95,7 +95,7 @@ Solo registrar en `PENDIENTES.md`, sin tocar: `preview/` (copia casi idéntica d
 - Cambiar el `src` en `index.html` a la versión WebP solo si la comparación visual antes y después es equivalente. Commit separado para poder revertirlo solo.
 - Si no hay herramientas o falla la verificación visual, registrar los pesos y la propuesta en `PENDIENTES.md`.
 
-## T10 - README del proyecto (APLICAR) - estado: pendiente
+## T10 - README del proyecto (APLICAR) - estado: hecha (f6a6769)
 
 Crear `README.md` en la raíz (hoy no existe en este repo) con: qué es el proyecto; estructura de carpetas; cómo probarlo localmente (`php -S 127.0.0.1:8080`); qué archivos se suben al hosting y cuáles no; cómo usar el agente de mantenimiento y sus archivos en `mantenimiento/`. No incluir datos sensibles ni credenciales.
 

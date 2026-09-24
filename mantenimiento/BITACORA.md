@@ -90,3 +90,9 @@ Rama: `mantenimiento/noche-2026-09-24` (creada desde `main` en `2286e4f`).
 - Mayores de 250 KB: las 3 fotos del equipo (1087 a 1180 KB, 1537x1023 px, que se muestran en 148 px) y 4 imágenes que `index.html` no usa (`product-screen-3.png` 520 KB, `EventoQR.png` 383 KB, `IMG_4564.PNG` 374 KB, `IMG_4565.PNG` 363 KB).
 - Imágenes de `assets/img/` (sin `clients/` ni `team/`) que no usan `index.html`, `style.css` ni `main.js`, en total unos 2576 KB: EventoQR.png, IMG_4563.PNG, IMG_4564.PNG, IMG_4565.PNG, advanced-feature-1/2/3.jpg, apple-touch-icon.png*, call-to-action-bg.jpg, call-to-action-bg2.jpg, call-to-action-bg2.png, favicon.png*, hero-bg.jpg, logo.png*, product-features-(1).png, product-features-.png, product-features.png, product-screen-1-.png, product-screen-1.png, product-screen-2-.png, product-screen-2.png, product-screen-3-.png, product-screen-3.png. (* = solo la usa `inner-page.html`.)
 - Revertir: no aplica (solo documentación).
+
+## T10 - README del proyecto (commit `f6a6769`)
+
+- Qué: `README.md` en la raíz con qué es el proyecto, la estructura de carpetas, cómo probarlo localmente (`php -S 127.0.0.1:8080`), cómo responde el formulario (contrato `OK` de `validate.js`), qué se sube al hosting y qué no, y cómo usar el agente y los scripts de `mantenimiento/`. Sin datos sensibles: solo figura el correo público que ya está en el sitio.
+- En el mismo commit: guarda `PHP_SAPI !== 'cli'` en `mantenimiento/capturar-mail.php`, para que no escriba archivos si por error se sube `mantenimiento/` al hosting. Verificado: una petición web no crea archivos y `pruebas-formulario.sh` sigue dando 18/18.
+- Revertir: `git revert f6a6769`.
