@@ -17,6 +17,8 @@ for (const width of [390, 1440]) {
   const errores = [];
   page.on('pageerror', e => errores.push(e.message));
   await page.goto(url, { waitUntil: 'networkidle' });
+  // Desactiva animaciones y transiciones para que dos capturas del mismo estado sean idénticas.
+  await page.addStyleTag({ content: '*,*::before,*::after{animation:none!important;transition:none!important}' });
   // Fuerza las animaciones AOS para que todo el contenido sea visible.
   await page.evaluate(() => document.querySelectorAll('[data-aos]').forEach(el => el.classList.add('aos-animate')));
   // Quita el lazy loading y espera a que carguen todas las imágenes.
@@ -25,7 +27,12 @@ for (const width of [390, 1440]) {
     imgs.forEach(img => img.loading = 'eager');
     await Promise.all(imgs.map(img => img.complete ? null : new Promise(r => { img.onload = img.onerror = r; })));
   });
-  await page.evaluate(() => document.fonts.ready);
+  // Fuerza la carga de todas las fuentes (Bootstrap Icons se pide recién cuando se usa un glifo).
+  await page.evaluate(async () => {
+    await document.fonts.load('16px "bootstrap-icons"', '');
+    await Promise.all([...document.fonts].map(f => f.load().catch(() => null)));
+    await document.fonts.ready;
+  });
   await page.waitForTimeout(1500);
   const archivo = path.join(dir, `${etiqueta}-${width}.png`);
   await page.screenshot({ path: archivo, fullPage: true });
