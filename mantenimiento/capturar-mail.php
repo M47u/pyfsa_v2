@@ -1,5 +1,8 @@
 <?php
 // Reemplazo de sendmail solo para pruebas locales: guarda cada correo en mantenimiento/capturas/mails/.
+if ( PHP_SAPI !== 'cli' ) {
+    exit; // Nunca se ejecuta desde la web.
+}
 $dir = __DIR__ . '/capturas/mails';
 if ( !is_dir( $dir ) ) {
     mkdir( $dir, 0777, true );
