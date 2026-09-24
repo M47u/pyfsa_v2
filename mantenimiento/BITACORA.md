@@ -45,3 +45,11 @@ Rama: `mantenimiento/noche-2026-09-24` (creada desde `main` en `2286e4f`).
 - T11 → P07 (toggle del menú móvil: cambio HTML/JS/CSS completo propuesto) y P08 (contraste). Los contrastes se calcularon con la fórmula WCAG: `--text-faint` da de 1.6 a 1.8:1 (copyright, etiquetas de contacto, placeholders) y el botón de WhatsApp con texto blanco da 1.98:1. Se corrigieron dos cifras de la propuesta tras recalcularlas.
 - Verificación: revisión de `git diff`, sin cambios fuera de `mantenimiento/`.
 - Revertir: `git revert` del commit de documentación correspondiente.
+
+## T09 - Auditoría de HTML y enlaces (commit `6bfa90a`)
+
+- Qué: se creó `mantenimiento/checks.py` (solo biblioteca estándar, `html.parser`). Detecta etiquetas sin cerrar o sin apertura, ids duplicados, anclas `#x` sin destino, `src`/`href` locales inexistentes, `<img>` sin `alt` y `target="_blank"` sin `rel="noopener"`. Respeta las etiquetas vacías y las de cierre opcional.
+- Autoprueba: con un HTML armado con un error de cada tipo detectó los 8 esperados, sin falsos positivos (`<li>` sin cierre, `href="#"`, `alt=""`, URLs externas).
+- Resultado sobre `index.html`: **0 errores**. Confirmado a mano con grep: 6/6 `target="_blank"` con `noopener`, 10/10 `<img>` con `alt`, 22 rutas locales existentes, sin ids duplicados ni anclas huérfanas. No hubo nada mecánico que corregir, así que `index.html` no se modificó y el criterio visual se cumple trivialmente.
+- Hallazgo registrado: `inner-page.html` tiene 9 anclas sin destino (menú de la plantilla original). No se toca: va a PENDIENTES junto con T07.
+- Revertir: `git revert 6bfa90a` (solo agrega el script).

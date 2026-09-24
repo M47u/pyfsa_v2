@@ -59,7 +59,7 @@ Registrar en `PENDIENTES.md`, sin cambiar nada:
 - En `PENDIENTES.md`, proponer el cambio (botón real con `aria-label` y `aria-expanded`) indicando qué habría que ajustar en HTML, CSS y JS. No aplicar.
 - Anotar también cualquier problema de contraste evidente que se detecte en las capturas.
 
-## T09 - Auditoría de HTML y enlaces (APLICAR) - estado: pendiente
+## T09 - Auditoría de HTML y enlaces (APLICAR) - estado: hecha (6bfa90a; index.html sin errores, no requirió correcciones)
 
 - Crear `mantenimiento/checks.py` y ejecutarlo sobre `index.html`.
 - Corregir solo lo mecánico: enlaces locales rotos, ids duplicados, anclas sin destino, `target="_blank"` sin `rel="noopener"`, etiquetas sin cerrar. Un `alt=""` en una imagen decorativa es válido: no tocarlo.
