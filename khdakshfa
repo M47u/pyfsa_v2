@@ -1,0 +1,118 @@
+[1mdiff --git a/forms/contact.php b/forms/contact.php[m
+[1mindex cd3ad3b..4faf680 100644[m
+[1m--- a/forms/contact.php[m
+[1m+++ b/forms/contact.php[m
+[36m@@ -1,27 +1,86 @@[m
+ <?php[m
+[31m-/*ini_set( 'display_errors', 1 );[m
+[31m-error_reporting( E_ALL );[m
+[31m-*/[m
+[31m-[m
+[31m-if ( !empty( $_POST ) ) {[m
+[31m-    $nombre = $_POST["name"];[m
+[31m-    $correo = $_POST["email"];[m
+[31m-    $asunto = $_POST["subject"];[m
+[31m-    $mensaje = $_POST["message"];[m
+[31m-    // var_dump( $_POST );[m
+[31m-    $from = "$correo";[m
+[31m-    $to = "Info@pyfsasoftware.com.ar";[m
+[31m-    $subject = "$nombre " . " " . " $asunto";[m
+[31m-    $message = "$mensaje";[m
+[31m-    $headers = $from;[m
+[31m-    if ( mail( $to, $subject, $message, $headers ) ) {[m
+[31m-        echo json_encode( array( "estado" => 200, "mensaje" => "Correo enviado exitosamente" ) );[m
+[31m-    } else {[m
+[31m-        echo json_encode( array( "estado" => 500, "mensaje" => "Error al enviar el correo, intentelo más tarde" ) );[m
+[31m-    }[m
+[31m-[m
+[31m-    } [m
+[31m-    else {[m
+[31m-    header( "location: ../index.html" );[m
+[31m-    }[m
+[31m-?>[m
+\ No newline at end of file[m
+[32m+[m[32m/*[m
+[32m+[m[32m * Formulario de contacto de PyFsa Software.[m
+[32m+[m[32m *[m
+[32m+[m[32m * Lo consume assets/vendor/php-email-form/validate.js, que muestra éxito solo si[m
+[32m+[m[32m * la respuesta es HTTP 200 con el texto exacto "OK". Cualquier otro texto (con[m
+[32m+[m[32m * HTTP 200) se muestra al visitante como mensaje de error.[m
+[32m+[m[32m */[m
+[32m+[m
+[32m+[m[32mini_set( 'display_errors', '0' );[m
+[32m+[m
+[32m+[m[32m$destino   = 'info@pyfsasoftware.com.ar';[m
+[32m+[m[32m$remitente = 'info@pyfsasoftware.com.ar';[m
+[32m+[m
+[32m+[m[32mif ( ( $_SERVER['REQUEST_METHOD'] ?? '' ) !== 'POST' ) {[m
+[32m+[m[32m    header( 'Location: ../index.html' );[m
+[32m+[m[32m    exit;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mheader( 'Content-Type: text/plain; charset=UTF-8' );[m
+[32m+[m
+[32m+[m[32mfunction campo( $nombre ) {[m
+[32m+[m[32m    $valor = $_POST[ $nombre ] ?? '';[m
+[32m+[m[32m    return is_string( $valor ) ? trim( $valor ) : '';[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mfunction largo( $texto ) {[m
+[32m+[m[32m    return function_exists( 'mb_strlen' ) ? mb_strlen( $texto, 'UTF-8' ) : strlen( $texto );[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mfunction responder( $texto ) {[m
+[32m+[m[32m    echo $texto;[m
+[32m+[m[32m    exit;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m// Honeypot: los visitantes no ven este campo; si llega completo es un bot.[m
+[32m+[m[32m// Se responde OK para no darle pistas, pero no se envía nada.[m
+[32m+[m[32mif ( campo( 'website' ) !== '' ) {[m
+[32m+[m[32m    responder( 'OK' );[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m$nombre  = campo( 'name' );[m
+[32m+[m[32m$correo  = campo( 'email' );[m
+[32m+[m[32m$asunto  = campo( 'subject' );[m
+[32m+[m[32m$mensaje = campo( 'message' );[m
+[32m+[m
+[32m+[m[32mif ( $nombre === '' || $correo === '' || $asunto === '' || $mensaje === '' ) {[m
+[32m+[m[32m    responder( 'Completá todos los campos.' );[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m// Ningún salto de línea en los datos que van a cabeceras (evita inyección).[m
+[32m+[m[32mif ( preg_match( '/[\r\n]/', $nombre . $correo . $asunto ) ) {[m
+[32m+[m[32m    responder( 'Los datos ingresados no son válidos.' );[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mif ( !filter_var( $correo, FILTER_VALIDATE_EMAIL ) ) {[m
+[32m+[m[32m    responder( 'Ingresá un correo válido.' );[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mif ( largo( $nombre ) > 100 || largo( $asunto ) > 150 || largo( $mensaje ) > 5000 ) {[m
+[32m+[m[32m    responder( 'El nombre, el asunto o el mensaje son demasiado largos.' );[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mif ( function_exists( 'mb_encode_mimeheader' ) ) {[m
+[32m+[m[32m    mb_internal_encoding( 'UTF-8' );[m
+[32m+[m[32m    $titulo = mb_encode_mimeheader( "$nombre - $asunto", 'UTF-8', 'B', "\r\n" );[m
+[32m+[m[32m} else {[m
+[32m+[m[32m    $titulo = '=?UTF-8?B?' . base64_encode( "$nombre - $asunto" ) . '?=';[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m$cuerpo = "Nombre: $nombre\r\n"[m
+[32m+[m[32m        . "Correo: $correo\r\n"[m
+[32m+[m[32m        . "Asunto: $asunto\r\n\r\n"[m
+[32m+[m[32m        . preg_replace( '/\r\n|\r|\n/', "\r\n", $mensaje ) . "\r\n";[m
+[32m+[m
+[32m+[m[32m$cabeceras = "From: PyFsa Software <$remitente>\r\n"[m
+[32m+[m[32m           . "Reply-To: $correo\r\n"[m
+[32m+[m[32m           . "MIME-Version: 1.0\r\n"[m
+[32m+[m[32m           . "Content-Type: text/plain; charset=UTF-8\r\n"[m
+[32m+[m[32m           . "Content-Transfer-Encoding: 8bit";[m
+[32m+[m
+[32m+[m[32mif ( mail( $destino, $titulo, $cuerpo, $cabeceras ) ) {[m
+[32m+[m[32m    responder( 'OK' );[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mresponder( 'No pudimos enviar tu mensaje. Probá de nuevo más tarde.' );[m

@@ -1,6 +1,6 @@
 Vas a trabajar sin supervisión, durante toda la noche, en el repositorio del sitio web de PyFsa Software (la carpeta actual). Actúa como el agente definido en `.claude/agents/pyfsa-mantenimiento.md`: léelo completo antes de empezar y respeta todos sus límites.
 
-Objetivo: ejecutar el backlog de `mantenimiento/BACKLOG.md` y dejar por la mañana (antes de las 6am) una rama revisable, con commits pequeños y reversibles, más un informe claro. No hay nadie para responder preguntas: ante la duda entre actuar y registrar, registra en `mantenimiento/PENDIENTES.md` y continúa con la siguiente tarea.
+Objetivo: ejecutar el backlog de `mantenimiento/BACKLOG.md` y dejar por la mañana una rama revisable, con commits pequeños y reversibles, más un informe claro. No hay nadie para responder preguntas: ante la duda entre actuar y registrar, registra en `mantenimiento/PENDIENTES.md` y continúa con la siguiente tarea.
 
 Pasos:
 
