@@ -3,18 +3,19 @@ estado: borrador
 fecha: 2026-10-05 10:00
 tipo: imagen
 medios: 2026-10-05_rotacion-stock/1.jpg
-alt: Grafico con tres categorias de productos segun su rotacion de stock: rapida, media y lenta, en fondo negro con acento verde lima.
+alt: Gráfico con el título "Ordená tu stock por rotación" y tres tarjetas: rotación rápida, media y lenta, sobre fondo negro con detalles en verde lima.
 ---
-¿Sabés cuáles productos se venden rápido y cuáles juntan polvo en el depósito?
-Ordenar el stock por rotación es más simple de lo que parece.
+¿Sabés qué productos se venden rápido y cuáles llevan meses en el depósito?
+Ordenar tu stock por rotación te ayuda a comprar mejor.
 
-Separá tus productos en tres grupos:
-- Los que se venden rápido: nunca deben faltar.
-- Los que rotan poco: pedí menos cantidad y con más tiempo.
-- Los que casi no se mueven: revisá si conviene seguir teniéndolos.
+Dividilo en tres grupos:
 
-Con esta clasificación vas a comprar mejor, liberar espacio y dejar de tener plata inmovilizada en productos que no se venden.
+1. Rotación rápida: nunca deben faltar en el local.
+2. Rotación media: pedí menos cantidad y con más tiempo.
+3. Rotación lenta: revisá si conviene seguir teniéndolos.
 
-Si querés que esto se calcule solo, sin planillas ni cuadernos, escribinos por WhatsApp. 📦
+Así comprás con más criterio, aprovechás mejor el espacio y evitás tener plata parada en mercadería que no sale.
 
-#gestiondenegocios #controldestock #pymes #formosa #comercios #softwareamedida
+Si hoy llevás el stock en planillas o cuadernos y querés verlo ordenado en un solo lugar, escribinos por WhatsApp al +54 9 3704 216650. 📦
+
+#controldestock #gestiondenegocios #pymes #comercios #formosa #softwareamedida

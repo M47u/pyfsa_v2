@@ -3,15 +3,17 @@ estado: borrador
 fecha: 2026-10-07 19:00
 tipo: carrusel
 medios: 2026-10-07_reporte-stock/1.jpg,2026-10-07_reporte-stock/2.jpg
-alt: Captura ficticia de un panel de control de stock con graficos de productos mas vendidos y alertas de stock bajo, estilo PyFsa.
+alt: Dos pantallas de ejemplo con datos ficticios. La primera muestra ventas del mes, productos activos y alertas de stock bajo. La segunda, un gráfico de barras de productos más vendidos.
 ---
-Con un sistema de control de stock, ves de un vistazo qué se vendió, qué falta y qué sobra.
-Sin abrir una sola planilla.
+¿Sabés qué se vendió más este mes y qué se está por terminar?
+Con un buen control de stock lo ves en un segundo, sin abrir una planilla.
 
-El sistema arma el reporte solo: productos más vendidos, alertas de stock bajo y comparación entre meses, con gráficos fáciles de leer.
+Un panel con lo que importa: ventas del mes, productos activos y alertas cuando algo se está quedando sin stock. Y un reporte con gráficos para ver cuáles son los productos que más salen.
 
-Vos tomás la decisión, el sistema hace las cuentas.
+Vos decidís qué reponer. El sistema te muestra los números.
 
-Escribinos por WhatsApp si querés verlo funcionando con tu negocio.
+(Las pantallas son un ejemplo con datos ficticios.)
+
+Si querés ver cómo quedaría en tu negocio, escribinos por WhatsApp: +54 9 3704 216650
 
 #controldestock #softwareamedida #pymes #formosa #gestiondenegocios
